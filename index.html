@@ -154,7 +154,7 @@
             
             // Anfrage an die Azure Function
             try {
-                const response = await fetch("https://thesisapi.azurewebsites.net/api/v0/", {
+                const response = await fetch("https://thesis-ai.azurewebsites.net/api/v0/", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -177,7 +177,6 @@
 
                 // Chat-Verlauf aktualisieren
                 chatHistory = data.history;
-                window.parent.postMessage({ type: 'chatUpdate', chatHistory: chatHistory }, '*');
             } catch (error) {
                 console.error(error);
                 addMessage("assistant", "Es gab ein Problem bei der Kommunikation mit dem Server.");
