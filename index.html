@@ -175,7 +175,7 @@
 
                 // Chat-Verlauf aktualisieren
                 chatHistory = data.history;
-                window.parent.postMessage(chatHistory, "*");
+                window.parent.postMessage({chatHistory}, "*");
             } catch (error) {
                 console.error(error);
                 addMessage("assistant", "Es gab ein Problem bei der Kommunikation mit dem Server.");
