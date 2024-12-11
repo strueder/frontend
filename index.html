@@ -175,7 +175,7 @@
 
                 // Chat-Verlauf aktualisieren
                 chatHistory = data.history;
-                window.parent.postMessage({chatHistory}, "*");
+                window.parent.postMessage(chatHistory, "*");
             } catch (error) {
                 console.error(error);
                 addMessage("assistant", "Es gab ein Problem bei der Kommunikation mit dem Server.");
@@ -186,6 +186,26 @@
         sendButton.addEventListener("click", sendMessage);
         messageInput.addEventListener("keypress", (e) => {
             if (e.key === "Enter") sendMessage();
+        });
+    </script>
+    <script type="text/javascript">
+        // Dein bestehender Code...
+
+        // Erfasse die `copy`-Ereignisse und sende die Daten an das übergeordnete Fenster
+        let copyCounter = 0;
+        let copiedTextArray = [];
+
+        document.addEventListener('copy', function(event) {
+            copyCounter++;
+            const copiedText = window.getSelection().toString();
+            copiedTextArray.push(copiedText);
+
+            // Sende die Daten an das übergeordnete Fenster
+            window.parent.postMessage({
+                type: 'copyEvent',
+                copyCounter: copyCounter,
+                copiedText: copiedText
+            }, '*');
         });
     </script>
 </body>
