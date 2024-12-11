@@ -202,22 +202,6 @@
                 copiedText: copiedTextJSON
             }, '*');
         });
-
-        document.addEventListener('paste', function(event) {
-            pasteCounter++;
-            const pastedText = (event.clipboardData || window.clipboardData).getData('text');
-            
-            if (pastedText !== lastPastedText) {
-                pastedTextJSON[pasteCounter] = pastedText;
-                lastPastedText = pastedText;
-            }
-            // Sende die Daten an das übergeordnete Fenster
-            window.parent.postMessage({
-                type: 'pasteEvent',
-                pasteCounter: pasteCounter,
-                pastedText: pastedTextJSON
-            }, '*');
-        });
 </script>
 </body>
 </html>
